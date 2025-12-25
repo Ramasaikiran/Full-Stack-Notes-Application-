@@ -16,7 +16,7 @@ function ForgotPassword() {
         setMessage('');
 
         try {
-            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/forgot-password`, {
+            const res = await fetch(`/api/auth/forgot-password`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email }),
@@ -38,7 +38,7 @@ function ForgotPassword() {
         setMessage('');
 
         try {
-            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/auth/reset-password`, {
+            const res = await fetch(`/api/auth/reset-password`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ email, otp, newPassword }),

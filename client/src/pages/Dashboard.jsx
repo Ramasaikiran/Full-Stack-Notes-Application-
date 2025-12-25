@@ -12,7 +12,7 @@ function Dashboard({ token, setToken }) {
 
     const fetchNotes = async () => {
         try {
-            const res = await fetch(`${import.meta.env.VITE_API_URL}/api/notes`, {
+            const res = await fetch(`/api/notes`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
             if (res.ok) {
@@ -61,7 +61,7 @@ function Dashboard({ token, setToken }) {
     const handleDelete = async (id) => {
         if (!window.confirm('Are you sure?')) return;
         try {
-            await fetch(`${import.meta.env.VITE_API_URL}/api/notes/${id}`, {
+            await fetch(`/api/notes/${id}`, {
                 method: 'DELETE',
                 headers: { Authorization: `Bearer ${token}` },
             });
