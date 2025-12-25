@@ -34,7 +34,16 @@ function Register() {
                 }),
             });
 
-            const data = await res.json();
+            console.log("Register Response Status:", res.status, res.statusText);
+            const text = await res.text();
+            console.log("Register Response Body:", text);
+
+            let data;
+            try {
+                data = JSON.parse(text);
+            } catch (e) {
+                throw new Error(`Server Error (${res.status}): ${text || 'Empty Response'}`);
+            }
 
             if (!res.ok) throw new Error(data.message || 'Registration failed');
 

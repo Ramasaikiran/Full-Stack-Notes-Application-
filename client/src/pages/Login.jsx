@@ -17,7 +17,16 @@ function Login({ setToken }) {
                 body: JSON.stringify({ username, password }),
             });
 
-            const data = await res.json();
+            console.log("Login Response Status:", res.status, res.statusText);
+            const text = await res.text();
+            console.log("Login Response Body:", text);
+
+            let data;
+            try {
+                data = JSON.parse(text);
+            } catch (e) {
+                throw new Error(`Server Error (${res.status}): ${text || 'Empty Response'}`);
+            }
 
             if (!res.ok) throw new Error(data.message || 'Login failed');
 
